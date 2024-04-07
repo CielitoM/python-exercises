@@ -53,33 +53,20 @@ def mergeSort(lista):
 
 
 #Busqueda binaria iterativa
-def busquedaBinariaIterativa(lista, elemento):
-    medio = int(len(lista)/2)
-    if(lista[medio] < elemento):
-        if (len(lista) == 1):
-            return 0
-        busquedaBinariaIterativa(lista[medio:], elemento)
-    elif(lista[medio] > elemento):
-        busquedaBinariaIterativa(lista[:medio], elemento)
-        if (len(lista) == 1):
-            return 0
-    elif(lista[medio] == elemento):
-        return medio
-
-def bus_bin(VEC, k, INI, FIN):
-    if INI > FIN:
-        POSICION = 0
+def busquedaBinaria(VECTOR, k, INICIO, FIN):
+    if INICIO > FIN:
+        POSICION = "not found"
     else:
-        MED = int((INI + FIN) / 2)
-        if k == VEC[MED]:
-            POSICION = MED
+        MEDIO = int((INICIO + FIN) / 2)
+        if k == VECTOR[MEDIO]:
+            POSICION = MEDIO
         else:
-            if k < VEC[MED]:
-                FIN = MED - 1
+            if k < VECTOR[MEDIO]:
+                FIN = MEDIO - 1
             else:
-                INI = MED + 1
-            POSICION = bus_bin(VEC, k, INI, FIN)
-        return POSICION
+                INICIO = MEDIO + 1
+            POSICION = busquedaBinaria(VECTOR, k, INICIO, FIN)
+    return POSICION
 
 
 
@@ -87,8 +74,8 @@ lista = inicializacionListaRandom(30)
 print("Lista sin ordenar y generada aleatoriamente: ", lista)
 mergeSort(lista)
 print("Lista ordenada con mergeSort", lista)
-posicion = bus_bin(lista, 1, 1, 30)
-if posicion:
+posicion = busquedaBinaria(lista, 1, 0, 30)
+if posicion != "not found":
     print("La posicion es: " , posicion)
 else:
     print("No se ha encontrado el elemento")
