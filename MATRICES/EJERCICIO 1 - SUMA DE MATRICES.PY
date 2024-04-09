@@ -37,15 +37,22 @@ def sumarDosMatricesZonaSombreada1(A,B):
         FILAS = FILAS_A
         COLUMNAS = COLUMNAS_A
         C = crearMatriz(FILAS, COLUMNAS)
-        for FILA in range(FILAS):
+
+        #recorrer las filas de arriba y abajo
+        for (FILA) in range(0, FILAS, FILAS-1):
             for COLUMNA in range(COLUMNAS):
+                    C[FILA][COLUMNA] = A[FILA][COLUMNA] + B[FILA][COLUMNA]
+
+        #recorrer las columnas izquierda y derecha
+        for COLUMNA in range(0, COLUMNAS, COLUMNAS-1):
+            for FILA in range(1, FILAS-1):
                 C[FILA][COLUMNA] = A[FILA][COLUMNA] + B[FILA][COLUMNA]
         return C
 
 
 
-MATRIZ1 = crearMatriz(4, 4)
-MATRIZ2 = crearMatriz(4, 4)
+MATRIZ1 = crearMatriz(5, 5)
+MATRIZ2 = crearMatriz(5, 5)
 leerMatriz(MATRIZ1)
 leerMatriz(MATRIZ2)
 print("Esta es la matriz 1:")
@@ -53,14 +60,6 @@ imprimirMatriz(MATRIZ1)
 print("Esta es la matriz 2:")
 imprimirMatriz(MATRIZ2)
 
-print("Esta es la matriz suma de la matriz1 y matriz2:")
-SUMA = sumarDosMatrices(MATRIZ1, MATRIZ2)
-imprimirMatriz(SUMA)
-
-print("Esta es la matriz 1 multiplicada por un escalar, 2:")
-multiplicacionMatrizPorUnEscalar(MATRIZ1, 2)
-imprimirMatriz(MATRIZ1)
-
-print("Esta es la matriz 1 multiplicada por la matriz 2:")
-MATRIZ3 = multiplicacionEntreDosMatrices(MATRIZ1, MATRIZ2)
+MATRIZ3 = sumarDosMatricesZonaSombreada1(MATRIZ1, MATRIZ2)
+print("Resultado = ")
 imprimirMatriz(MATRIZ3)
