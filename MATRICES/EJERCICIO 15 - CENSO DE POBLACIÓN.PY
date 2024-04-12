@@ -1,5 +1,7 @@
-# Dada una matriz A[M,N] y la posición [FILA, COLUMNA] de un elemento de la misma, obtener la matriz
-# B que resulta al eliminar la fila y la columna de ese elemento.
+# Los datos del censo de población se almacenan en una matriz CENSO [ m , n ], donde cada
+# elemento representa la población de una manzana [m y n son pares]. Se pide formar una nueva
+# matriz RESUMEN donde cada elemento represente la población de un cuadro de 2 * 2 manzanas de la
+# matriz CENSO.
 import random
 
 
@@ -24,52 +26,41 @@ def imprimirMatriz(MATRIZ):
         print(MATRIZ[FILA])
 
 
-def eliminarFilas(MATRIZ, ELIMINARFILA):
-    FILAS = len(MATRIZ)
-    COLUMNAS = len(MATRIZ[0])
-    bandera = 0
-    for FILA in range(FILAS):
-        for COLUMNA in range(COLUMNAS):
-            if (FILA == ELIMINARFILA or bandera == 1) and FILA < FILAS-1:
-                bandera = 1
-                MATRIZ[FILA][COLUMNA] = MATRIZ[FILA+1][COLUMNA]
-            elif bandera == 0:
-                MATRIZ[FILA][COLUMNA] = MATRIZ[FILA][COLUMNA]
+def hacerResumen(MATRIZ, FILAS, COLUMNAS):
 
-def eliminarColumnas(MATRIZ, ELIMINARCOLUMNA):
-    FILAS = len(MATRIZ)
-    COLUMNAS = len(MATRIZ[0])
-    bandera = 0
-    for FILA in range(FILAS):
-        for COLUMNA in range(COLUMNAS):
-            if (COLUMNA == ELIMINARCOLUMNA or bandera == 1) and COLUMNA < COLUMNAS-1:
-                bandera = 1
-                MATRIZ[FILA][COLUMNA] = MATRIZ[FILA][COLUMNA+1]
-            elif bandera == 0:
-                MATRIZ[FILA][COLUMNA] = MATRIZ[FILA][COLUMNA]
+    #Inicializar lista SUMA donde se almacenaran la suma de la población por c/matriz 2*2
+    SUMA = []
+    #hallar la cantidad de elementos en resumen
+    FILAS_RESUMEN = int(FILAS/2)
+    COLUMNAS_RESUMEN = int(COLUMNAS/2)
+    RESUMEN = crearMatriz(FILAS_RESUMEN, COLUMNAS_RESUMEN)
 
-def reconstruirMatriz(MATRIZ):
-    FILAS = len(MATRIZ)
-    COLUMNAS = len(MATRIZ[0])
-    MATRIZ2 = crearMatriz(FILAS-1, COLUMNAS-1)
+    for FILA in range(0, FILAS, 2):
+        for COLUMNA in range(0, COLUMNAS, 2):
+                        # Arriba izquierda      Arriba derecha            Abajo izquierda            Abajo derecha
+            SUMA.append(MATRIZ[FILA][COLUMNA] + MATRIZ[FILA][COLUMNA+1] + MATRIZ[FILA+1][COLUMNA] + MATRIZ[FILA+1][COLUMNA+1])
 
-    for FILA in range(FILAS-1):
-        for COLUMNA in range(COLUMNAS-1):
-            if MATRIZ[FILA][COLUMNA] != 0:
-                MATRIZ2[FILA][COLUMNA] = MATRIZ[FILA][COLUMNA]
-    imprimirMatriz(MATRIZ2)
+    ELEMENTO = 0
+    for FILA in range(FILAS_RESUMEN):
+        for COLUMNA in range(COLUMNAS_RESUMEN):
+            RESUMEN[FILA][COLUMNA] = SUMA[ELEMENTO]
+            ELEMENTO = ELEMENTO + 1
+
+    return RESUMEN
 
 
-MATRIZ1 = crearMatriz(7, 7)
-leerMatriz(MATRIZ1)
+
+FILA = 10
+COLUMNA = 2
+CENSO = crearMatriz(FILA, COLUMNA)
+leerMatriz(CENSO)
+
 print("Esta es la matriz 1:")
-imprimirMatriz(MATRIZ1)
-FILA = random.randint(0,6)
-print("Se va a eliminar la fila:", FILA)
-COLUMNA = random.randint(0,6)
-print("Se va a eliminar la columna:", COLUMNA)
-eliminarFilas(MATRIZ1, FILA)
-eliminarColumnas(MATRIZ1, COLUMNA)
-print("Esta es la matriz:")
-reconstruirMatriz(MATRIZ1)
+imprimirMatriz(CENSO)
+
+RESUMEN = hacerResumen(CENSO, FILA, COLUMNA)
+
+
+print("Esta es la matriz resumen:")
+imprimirMatriz(RESUMEN)
 
