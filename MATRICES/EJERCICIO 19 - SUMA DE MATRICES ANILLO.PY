@@ -17,11 +17,6 @@ def leerMatriz(MATRIZ):
             MATRIZ[FILA][COLUMNA] = random.randint(0,10)
 
 
-def imprimirMatriz(MATRIZ):
-    FILAS = len(MATRIZ)
-    for FILA in range(FILAS):
-        print(MATRIZ[FILA])
-
 def imprimirMatrizEspecial(MATRIZ):
     FILAS = len(MATRIZ)
 

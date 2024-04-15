@@ -1,4 +1,3 @@
-#MATRICES
 import random
 
 
@@ -17,10 +16,14 @@ def leerMatriz(MATRIZ):
             MATRIZ[FILA][COLUMNA] = random.randint(1,10)
 
 
-def imprimirMatriz(MATRIZ):
+def imprimirMatrizEspecial(MATRIZ):
     FILAS = len(MATRIZ)
+
     for FILA in range(FILAS):
-        print(MATRIZ[FILA])
+        fila_formateada = ''
+        for columna in MATRIZ[FILA]:
+            fila_formateada += str(columna).rjust(6)  # Alinea cada elemento a la derecha con un ancho de 6 caracteres
+        print(fila_formateada)
 
 
 #SUMA DE MATRICES
@@ -56,10 +59,9 @@ MATRIZ2 = crearMatriz(5, 5)
 leerMatriz(MATRIZ1)
 leerMatriz(MATRIZ2)
 print("Esta es la matriz 1:")
-imprimirMatriz(MATRIZ1)
+imprimirMatrizEspecial(MATRIZ1)
 print("Esta es la matriz 2:")
-imprimirMatriz(MATRIZ2)
-
+imprimirMatrizEspecial(MATRIZ2)
 MATRIZ3 = sumarDosMatricesZonaSombreada1(MATRIZ1, MATRIZ2)
-print("Resultado = ")
-imprimirMatriz(MATRIZ3)
+print("Resultado: ")
+imprimirMatrizEspecial(MATRIZ3)
