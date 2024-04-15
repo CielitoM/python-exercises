@@ -1,6 +1,5 @@
 import random
 
-
 def crearMatriz(M, N):
     MATRIZ = []
     for I in range(M):
@@ -37,7 +36,9 @@ def imprimirMatrizEspecial(MATRIZ):
             fila_formateada += str(columna).rjust(6)  # Alinea cada elemento a la derecha con un ancho de 6 caracteres
         print(fila_formateada)
 
+def realizarMovimiento(MATRIZ, MOVIMIENTO):
 
+    pass
 
 MATRIZ = crearMatriz(4, 4)
 leerMatriz(MATRIZ)
@@ -50,14 +51,14 @@ while not FINALIZADO:
 
     #REALIZACION DEL MOVIMIENTO
     if (MOVIMIENTO == 'W' or MOVIMIENTO == 'w'):
-    #print("Su movimiento ha sido : ", MOVIMIENTO)
-        MATRIZ = realizarMovimientoArriba(MATRIZ, MOVIMIENTO)
-    elif (MOVIMIENTO == 'S' or MOVIMIENTO == 's'):
-        MATRIZ = realizarMovimientoAbajo(MATRIZ, MOVIMIENTO)
+        print("Su movimiento ha sido : ", MOVIMIENTO)
+        #MATRIZ = realizarMovimientoArriba(MATRIZ, MOVIMIENTO)
+    #elif (MOVIMIENTO == 'S' or MOVIMIENTO == 's'):
+        #MATRIZ = realizarMovimientoAbajo(MATRIZ, MOVIMIENTO)
 
-    elif (MOVIMIENTO == 'D' or MOVIMIENTO == 'd'):
+   #elif (MOVIMIENTO == 'D' or MOVIMIENTO == 'd'):
 
-    elif (MOVIMIENTO == 'A' or MOVIMIENTO == 'a'):
+    #elif (MOVIMIENTO == 'A' or MOVIMIENTO == 'a'):
 
 
     FINALIZADO = True
